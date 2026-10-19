@@ -1,0 +1,17 @@
+import * as THREE from './vendor/three.module.js';
+// SVG coordinates become metres only after the mesh is scaled to block size.
+export function pathsFromSVG(d){const paths=[];let path=null,x=0,y=0;const tok=d.match(/[MLHVQZ]|-?\d*\.?\d+/gi)||[];let i=0,cmd='';const X=v=>(v-50)/100,Y=v=>(50-v)/100;while(i<tok.length){if(/[a-z]/i.test(tok[i]))cmd=tok[i++].toUpperCase();if(cmd==='M'){x=+tok[i++];y=+tok[i++];path=new THREE.Path();path.moveTo(X(x),Y(y));paths.push(path);cmd='L'}else if(cmd==='L'){x=+tok[i++];y=+tok[i++];path.lineTo(X(x),Y(y))}else if(cmd==='H'){x=+tok[i++];path.lineTo(X(x),Y(y))}else if(cmd==='V'){y=+tok[i++];path.lineTo(X(x),Y(y))}else if(cmd==='Q'){const cx=+tok[i++],cy=+tok[i++];x=+tok[i++];y=+tok[i++];path.quadraticCurveTo(X(cx),Y(cy),X(x),Y(y))}else if(cmd==='Z'){path.closePath();cmd=''}else throw new Error('Unsupported path command '+cmd)}return paths}
+function outline(){const s=new THREE.Shape(),r=.008,a=.49;s.moveTo(-a+r,-a);s.lineTo(a-r,-a);s.quadraticCurveTo(a,-a,a,-a+r);s.lineTo(a,a-r);s.quadraticCurveTo(a,a,a-r,a);s.lineTo(-a+r,a);s.quadraticCurveTo(-a,a,-a,a-r);s.lineTo(-a,-a+r);s.quadraticCurveTo(-a,-a,-a+r,-a);return s}
+function extrude(shape,depth){const g=new THREE.ExtrudeGeometry(shape,{depth,steps:1,bevelEnabled:true,bevelThickness:.003,bevelSize:.003,bevelSegments:2,curveSegments:7});g.translate(0,0,-depth/2);return g}
+export function blockGeometry(type,holes,depth,outlines={}){const shape=outlines[type]?new THREE.Shape(pathsFromSVG(outlines[type])[0].getPoints(8)):outline();if(type!=='funnel'){shape.holes=pathsFromSVG(holes[type]||'');if(type==='flower'){const p=new THREE.Path();p.absarc(0,0,.03,0,Math.PI*2,false);shape.holes.push(p)}return [{geometry:extrude(shape,depth),shade:1}]}
+// Privacy block: deep outer frame, recessed solid pan and three sloped cheeks.
+const aperture=new THREE.Path();aperture.moveTo(-.42,-.42);aperture.lineTo(.42,-.42);aperture.lineTo(.42,.42);aperture.lineTo(-.42,.42);aperture.closePath();shape.holes.push(aperture);const parts=[{geometry:extrude(shape,depth),shade:1}];const plate=new THREE.BoxGeometry(.60,.60,depth*.16);plate.translate(0,0,-depth*.32);parts.push({geometry:plate,shade:.96});const front=depth/2,back=-depth*.24;
+function cheek(pts){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pts.flat(),3));g.setIndex([0,1,2,0,2,3]);g.computeVertexNormals();parts.push({geometry:g,shade:1})}
+cheek([[-.42,-.42,front],[-.30,-.30,back],[-.30,.30,back],[-.42,.42,front]]);
+cheek([[.42,.42,front],[.30,.30,back],[.30,-.30,back],[.42,-.42,front]]);
+cheek([[.42,-.42,front],[.30,-.30,back],[-.30,-.30,back],[-.42,-.42,front]]);
+return parts}
+export function sunDirection(elevation,azimuth){const e=THREE.MathUtils.degToRad(elevation),a=THREE.MathUtils.degToRad(azimuth);return new THREE.Vector3(Math.sin(a)*Math.cos(e),Math.sin(e),-Math.cos(a)*Math.cos(e))}
+export function layout(s){const b=s.blockSize*.0254,j=s.joint/1000,cols=s.cells[0]?.length||0,rows=s.cells.length;return {b,j,cols,rows,width:s.width*.3048,height:s.height*.3048,depth:(s.depth||100)/1000,sill:(s.sill||0)/1000,gridWidth:cols*b+(cols-1)*j,gridHeight:rows*b+(rows-1)*j}}
+// Include the scale figure and dimension leaders when fitting a narrow viewport.
+export function fitCameraDistance(width,height,aspect,fov=43){const tan=Math.tan(THREE.MathUtils.degToRad(fov/2));return Math.max(3.5,(width+1.7)/(2*tan*Math.max(aspect,.35)),(height+.6)/(2*tan))*1.24}

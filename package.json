@@ -1,0 +1,18 @@
+{
+  "name": "jali-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Terracotta jali wall designer with real dimensions and a 3D light study",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node --test tests/*.cjs tests/*.mjs",
+    "serve": "python3 -m http.server 8080 --directory dist"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.3"
+  }
+}

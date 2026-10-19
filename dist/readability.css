@@ -1,0 +1,161 @@
+/* Desktop type scale: readable controls and supporting text at normal browser zoom. */
+@media (min-width: 901px), (min-width: 701px) and (pointer: fine) {
+  :root { --muted: #59695f; --line: #d9ddd3; }
+  body { font-size: 15px; line-height: 1.5; }
+  button, input, select, textarea { line-height: 1.4; }
+  button { min-height: 38px; }
+  button:focus-visible, a:focus-visible, summary:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid #3b684d; outline-offset: 3px;
+  }
+  button:disabled { opacity: .5; }
+  header { min-height: 80px; height: auto; padding: 16px 2.5%; gap: 24px; flex-wrap: wrap; }
+  .header-actions { gap: 10px; flex-wrap: wrap; }
+  .header-actions button, #agentHelp { font-size: 14px; padding: 10px 14px; }
+  .header-actions > span, .header-note { font-size: 12px; color: #59695f; }
+  .global-units { font-size: 12px; color: #465d4d; gap: 8px; }
+  .global-units select { font-size: 14px; min-height: 40px; width: 64px; }
+  main { max-width: 1920px; padding: 26px 2.5% 32px; }
+  .intro { margin-bottom: 22px; }
+  h1 { font-size: 38px; margin: 6px 0 10px; line-height: 1.2; }
+  .intro p { font-size: 15px; color: #59695f; max-width: 70ch; }
+  .eyebrow, .section-label { font-size: 11px; letter-spacing: 1.1px; }
+  h2, .panel-heading h2 { font-size: 17px; line-height: 1.35; }
+  .panel-heading > span { font-size: 12px; color: #59695f; white-space: nowrap; }
+  .panel { border-color: #d9ddd3; border-radius: 12px; }
+  .library, .settings, .lighting-sidebar { padding: 20px; min-width: 0; }
+  .stage { position: static; min-width: 0; }
+  .muted, .small, .micro { color: #59695f; }
+  .small { font-size: 14px; line-height: 1.6; }
+  .micro { font-size: 12px; line-height: 1.65; }
+  .library-tabs { margin: 16px 0; gap: 5px; }
+  .library-tabs button { font-size: 14px; padding: 9px 7px; }
+  #blockSearch { font-size: 14px; min-height: 42px; padding: 10px 12px; }
+  .block-filters, .combo-filters { gap: 6px; margin: 12px 0; }
+  .block-filters button, .combo-filters button { font-size: 12px; min-height: 32px; padding: 6px 9px; }
+  .block-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; max-height: 510px; }
+  .block-card { padding: 8px 5px; }
+  .block-card span { font-size: 12px; white-space: normal; overflow-wrap: anywhere; line-height: 1.4; margin-top: 7px; }
+  .block-card .new-mark { font-size: 10px; color: #5d704d; letter-spacing: .4px; }
+  .block-info { padding: 16px 0; gap: 9px; }
+  .block-info strong, .combo-info strong { font-size: 15px; font-weight: 600; }
+  .block-info span, .combo-info span, .combo-info small { font-size: 13px; color: #59695f; line-height: 1.65; }
+  .block-info button, .combo-info button { font-size: 13px; padding: 8px 10px; }
+  .combo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-height: 580px; }
+  .combo-grid button { padding: 10px 8px; }
+  .combo-grid svg { height: 100px; }
+  .combo-grid span { font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
+  .combo-grid small { font-size: 12px; color: #59695f; }
+  .combo-info { margin: 18px 0; gap: 10px; }
+  .brush-setting, .brush-setting button { font-size: 14px; }
+  .section-label { color: #59695f; margin-top: 24px; }
+  .swatches { gap: 12px; }
+  .swatches button { width: 32px; height: 32px; min-height: 32px; }
+  .library-foot { color: #59695f; }
+  .library-foot p { font-size: 12px; }
+  .brush-hud { padding: 13px 16px; gap: 12px; flex-wrap: wrap; }
+  .brush-hud small { font-size: 12px; color: #59695f; }
+  .brush-hud strong { font-size: 17px; }
+  .brush-hud-actions { gap: 7px; flex-wrap: wrap; }
+  .brush-hud-actions button { font-size: 14px; padding: 8px 10px; }
+  .brush-hud-actions span { font-size: 14px; }
+  .stage-toolbar { height: auto; min-height: 62px; padding: 10px 14px; flex-wrap: wrap; }
+  .stage-toolbar > .segmented { flex-wrap: wrap; flex: 1; }
+  .segmented button { font-size: 14px; padding: 9px 11px; min-height: 38px; }
+  .history button, .history button:last-child { font-size: 22px; min-width: 38px; padding: 4px; }
+  .view-tabs { padding: 0 14px 12px; gap: 8px; flex-wrap: wrap; }
+  .view-tabs > .segmented { flex: 1; min-width: 200px; }
+  .view-tabs .segmented button { flex: 1; white-space: nowrap; }
+  .view-tabs > button { font-size: 13px; padding: 8px; }
+  .wall-scene { height: clamp(420px, 49vh, 640px); min-height: 0; }
+  .wall-scene.elevation-view { padding: 62px 28px 70px; }
+  .wall-drawing, .wall-drawing svg { max-height: 100%; }
+  .scene-tag { font-size: 11px; letter-spacing: .7px; color: #405744; background: #fffef2ed; padding: 7px 10px; }
+  .scene-bottom { font-size: 12px; line-height: 1.5; gap: 10px; color: #405744; background: #fffef2ed; padding: 8px 10px; }
+  .scene-bottom > span { min-width: 0; }
+  .scene-bottom button { font-size: 12px; flex-shrink: 0; padding: 7px 9px; }
+  .stage-footer { font-size: 12px; color: #59695f; line-height: 1.5; flex-wrap: wrap; padding: 14px 16px; }
+  .selection-bar { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
+  .selection-bar strong { font-size: 15px; font-weight: 600; }
+  .selection-bar small { font-size: 12px; color: #59695f; line-height: 1.6; }
+  .selection-actions { gap: 6px; flex-wrap: wrap; }
+  .selection-actions button { font-size: 13px; padding: 8px 10px; }
+  .clipboard-tools { gap: 7px; padding: 12px 14px; }
+  .clipboard-tools button { font-size: 13px; padding: 8px 10px; }
+  .clipboard-tools > span { font-size: 12px; line-height: 1.6; color: #465d4d; }
+  .settings label, .site-sun-controls label { font-size: 14px; line-height: 1.5; gap: 8px; }
+  .settings label > span { font-size: 13px; color: #59695f; }
+  .input-pair { gap: 12px; }
+  .input-pair > div { padding: 12px; width: calc(50% - 12px); background: #fafaf4; }
+  .input-pair small { font-size: 11px; font-weight: 600; color: #59695f; letter-spacing: .8px; }
+  .input-pair input { font-size: 21px; line-height: 1.4; margin-top: 5px; }
+  .settings select, .settings #customSize, .site-sun-controls select,
+  .site-sun-controls input:not([type='range']):not([type='checkbox']) { font-size: 15px; min-height: 42px; padding: 10px 12px; }
+  input[type='range'] { min-height: 28px; margin: 4px 0; }
+  .fit-note { font-size: 13px; color: #59695f; line-height: 1.7; }
+  .full-button, .privacy-band .full-button { font-size: 14px; min-height: 42px; padding: 10px 12px; }
+  .quantities { gap: 32px; margin: 20px 0; }
+  .quantities span { font-size: 32px; }
+  .quantities small { font-size: 11px; letter-spacing: .5px; color: #59695f; }
+  #starterPatterns > summary, .capture-combo summary, .site-details summary, .manual-light summary { font-size: 14px; color: #405744; padding: 10px 0; line-height: 1.6; }
+  .presets button span, .rhythm-source { font-size: 13px; }
+  .capture-combo { font-size: 14px; }
+  .capture-combo input, .capture-size select { font-size: 14px; min-height: 40px; }
+  .capture-size label { font-size: 13px; }
+  .capture-combo .full-button { font-size: 14px; }
+  .sun-heading strong { font-size: 18px; font-weight: 600; }
+  .sun-heading .small { font-size: 13px; color: #59695f; }
+  .sun-heading > button, .lighting-sidebar .sun-presets button { font-size: 13px; }
+  .light-views { gap: 6px; }
+  .light-views button { font-size: 13px; padding: 9px 6px; }
+  .time-ticks button { font-size: 13px; color: #465d4d; }
+  #sunStatus { font-size: 14px; padding: 14px; }
+  #sunStatus.no-direct { color: #465544; }
+  .site-sun-controls .micro { font-size: 12px; }
+  .light-sliders label, .sun-panel .scene-toggles label { font-size: 14px; color: #465d4d; }
+  .sun-panel .scene-toggles input { width: 18px; height: 18px; }
+  .below .eyebrow, .below > span { font-size: 12px; color: #59695f; }
+  dialog { padding: 28px; }
+  .modal-top h2 { font-size: 28px; }
+  .modal-top button { font-size: 18px; min-width: 40px; }
+  #modalContent { font-size: 15px; line-height: 1.65; }
+  .catalog-detail p, .agent-help p { font-size: 15px; }
+  .catalog-detail .small, .agent-help .small, .export-options small { font-size: 14px; color: #59695f; }
+  .catalog-detail .micro, .agent-help code { font-size: 12px; }
+  .catalog-detail .primary, .catalog-detail a, .source-anchor { font-size: 14px; }
+  .catalog-detail a, .source-anchor { color: #3c6044; text-decoration: underline; text-underline-offset: 3px; }
+  .agent-help details { font-size: 14px; overflow-wrap: anywhere; }
+  .export-options button { font-size: 16px; }
+  table { font-size: 14px; }
+  .share-panel label, .share-panel textarea, #shareFeedback { font-size: 14px; }
+  .shortcut-guide h3 { font-size: 15px; }
+  .shortcut-guide dt, .shortcut-guide dd, .shortcut-toggle { font-size: 14px; }
+  #toast { font-size: 14px; line-height: 1.6; }
+}
+@media (min-width: 1280px) {
+  .workspace { grid-template-columns: 280px minmax(400px, 1fr) 300px; gap: 20px; }
+}
+@media (min-width: 1600px) {
+  .workspace { grid-template-columns: 300px minmax(500px, 1fr) 320px; gap: 24px; }
+}
+@media (min-width: 901px) and (max-width: 1279px), (min-width: 701px) and (max-width: 900px) and (pointer: fine) {
+  .workspace { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 18px; }
+  .workspace > .settings, body[data-view='3d'] .lighting-sidebar { grid-column: 1 / -1; }
+  .settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  .settings > .input-pair, .settings > .panel-heading, .settings > label,
+  .settings > select, .settings > .divider, .settings > .fit-note,
+  .settings > #customSizeWrap, .settings > .quantities, .settings > .full-button,
+  .settings > .micro { grid-column: 1 / -1; }
+  .lighting-sidebar .sun-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .lighting-sidebar .sun-heading, .lighting-sidebar .light-views { grid-column: 1 / -1; }
+}
+@media (min-width: 701px) and (max-width: 1450px) {
+  .header-note, .header-actions #saveStatus { display: none; }
+}
+@media (min-width: 901px), (min-width: 701px) and (pointer: fine) {
+  .wall-drawing { height: 100%; display: flex; align-items: center; }
+  .wall-drawing.zoomed { display: block; }
+}
+@media (min-width: 901px) and (max-width: 1279px), (min-width: 701px) and (max-width: 900px) and (pointer: fine) {
+  .settings > input { grid-column: 1 / -1; }
+}
